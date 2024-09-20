@@ -1,0 +1,62 @@
+
+body{
+  margin: 0px;
+
+}
+*{
+  box-sizing: border-box;
+}
+
+
+
+
+.interface{
+  width: 100vw;
+  height: 100vh;
+  background-color: #F5F5F5;
+  &-panel{
+    
+    background-image: linear-gradient(to right, rgba(#F5F5F5,0.95) 0%,rgba(#F5F5F5,0.95) 80%,rgba(#F5F5F5,0) 100%);
+ 
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: auto;
+    padding: 20px;
+    padding-right: 100px;
+    z-index: 99;
+    pointer-events: none;
+    &-inner{
+      width: 250px;
+      height: 100%;
+      background-color: white;
+      border: 1px solid #E8E8E8;
+      box-shadow: 0px 0px 10px rgba(black,.05);
+      border-radius: 1rem;
+      pointer-events:all;
+    }
+  
+ 
+ 
+  }
+  &-body{
+
+    width: 100%;
+    height: 100%;
+
+    .konvajs-content,
+    .konvajs-content canvas{
+  
+      width: 100%!important;
+      height: 100%!important;
+    
+    
+    }
+
+   
+ 
+  }
+}
