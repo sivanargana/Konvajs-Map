@@ -1,7 +1,11 @@
+
+let container = document.querySelector(".interface-body");
 const Resizing = (stage) => {
+
+    
     let stageResize = () => {
-        stage.setWidth(window.innerWidth),
-        stage.setHeight(window.innerHeight);
+        stage.setWidth(container.getBoundingClientRect().width),
+        stage.setHeight(container.getBoundingClientRect().height);
     }
     stageResize()
     window.onresize = () => {
