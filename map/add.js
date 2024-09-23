@@ -68,9 +68,31 @@ document.querySelectorAll('[data-shape]').forEach(item => {
           object.on("click",(e)=>{
 
             selectedObj = e.currentTarget;
+
+            let html = "";
+
+            selectedObj.children.forEach((item)=>{
+
+              html += `<h5>${item.className}</h5>`;
+              html += `<div class="row">`;
+              Object.keys(item.attrs).forEach((attr)=>{
+                html += `<div class="col-6">`;
+                html += `<div class="small text-truncate">${attr}</div>`;
+                html += `</div>`;
+                html += `<div class="col-6">`;
+                html += `<input type="text" class="form-control form-control-sm" value="${item.attrs[attr]}" />`;
+                html += `</div>`;
+
+              })
+              html += `</div>`;
+
+            })
+       
+
+            document.querySelector(".attributes").innerHTML = html;
             
 
-            console.log(e.currentTarget)
+            // console.log(selectedObj.children[0].attrs)
 
           })
 

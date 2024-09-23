@@ -16,9 +16,9 @@ const AddShape = (shape, layer) => {
     });
     
     let circle = new Konva.Circle({
-        x: 50,
-        y: 50,
-        radius: 70,
+        x: 0,
+        y: 0,
+        radius: 50,
         fill: 'red',
         stroke: 'black',
         strokeWidth: 4,
