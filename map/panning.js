@@ -55,7 +55,7 @@ stage.on('mousemove touchmove', (e) => {
     const imgWidth = layer.getChildren().find(child => child instanceof Konva.Image).width() * Common.scale;
     const imgHeight = layer.getChildren().find(child => child instanceof Konva.Image).height() * Common.scale;
 
-    console.log(Common.scale,"panning")
+    
 
     // Constrain stage movement within boundaries
     if (stage.x() > 0) {

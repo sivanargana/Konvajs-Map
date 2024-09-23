@@ -19,12 +19,7 @@ const AddShape = (shape, layer) => {
             });
 
             layer.add(rect)
-            let tr = new Konva.Transformer({
-                nodes: [rect],
-                padding: 5,
-                ignoreStroke: true
-            });
-            layer.add(tr);
+      
 
             break;
 
@@ -42,12 +37,7 @@ const AddShape = (shape, layer) => {
             });
 
             layer.add(circle)
-            let trcircle = new Konva.Transformer({
-                nodes: [circle],
-                padding: 5,
-                ignoreStroke: true
-            });
-            layer.add(trcircle);
+         
 
 
     }

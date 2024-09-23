@@ -17,7 +17,7 @@ stage.on('wheel', (e) => {
     // Limit the zoom level
     Common.scale = Math.min(Common.scale, 5); // Max zoom level
     Common.scale = Math.max(Common.scale, 1); // Min zoom level
-    console.log(Common.scale,"zooming")
+ 
     // Update stage scale
     stage.scale({ x: Common.scale, y: Common.scale });
 

@@ -1,16 +1,21 @@
  
-const Export = (stage) => {
+const Export = (stage,obj) => {
+  obj.json = stage.toJSON();
+  let body =  JSON.stringify(obj);
+  
+ 
+
 
    
-    fetch("http://localhost:3000/map/66ee7c56320ea379501e1343",
+    fetch("http://localhost:3000/map",
         {
-          method:"PUT",
+          method:"POST",
           headers: {
             'Content-Type': 'application/json'
           },
-          body:JSON.stringify({svg:stage.toJSON()})
+          body:body
         }).then((res)=>res.json()).then((res)=>{
-        console.log(res)
+   
       })
  
 }
