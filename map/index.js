@@ -1,45 +1,32 @@
-import './map.scss';
-import Map from './map.webp';
-import Resizing from './resize';
-import Panning from './panning';
-import Zooming from './zooming';
-import AddShape from './addshape';
-let stage = new Konva.Stage({
-  container: 'canvas',
-});
-let layer = new Konva.Layer();
+fetch("http://localhost:3000/map",
+  {
+    method:"GET",
+   }).then((res)=>res.json()).then((res)=>{
+    let html = "";
+    let group = document.querySelector(".list-group");
 
-let container = document.querySelector(".interface-body");
- 
-
-Konva.Image.fromURL(Map, function (image) {
-  image.setAttrs({
-    x: 0,
-    y: 0,
-    scaleX:container.getBoundingClientRect().width / image.getImage().width,
-    scaleY:container.getBoundingClientRect().width / image.getImage().width
-  });
-  layer.add(image);
- 
-});
-stage.add(layer);
-layer.draw();
-Resizing(stage)
-Panning(stage, layer)
-Zooming(stage, layer)
+    if(res.length > 0){
+      res.forEach(item => {
 
 
-document.querySelectorAll('[data-shape]').forEach(item=>{
-  item.addEventListener("click",(e)=>{
-    AddShape(e.target.dataset.shape,layer);
-    layer.draw();
-  })
-})
-document.querySelector('[data-type="save"]').addEventListener("click",(e)=>{
+        html += `<div class="list-group-item">`;
+        html += item.name;
+        html += `</div>`;
+    
+    
+          
+    
+    
+    
+          
+        });
+    }else{
+      html += `<div class="list-group-item text-center">`;
+      html += "no records found.";
+      html += `</div>`;
+    }
+  
 
-
-  localStorage.setItem("canvas",JSON.stringify(stage.toJSON()))
-
- 
- 
+    group.innerHTML = html;
+  console.log(res)
 })

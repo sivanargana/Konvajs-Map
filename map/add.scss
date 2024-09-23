@@ -15,10 +15,12 @@ body{
   width: 100vw;
   height: 100vh;
   &-panel{
-    flex: 0 0 200px;
+    flex: 0 0 240px;
     display: flex;
+    gap: 20px;
     flex-direction: column;
     height: 100%;
+    padding: 20px;
     background-color: white;
     border-right: 1px solid #c5c5c5;
     box-shadow: 5px 0px 10px rgba(black,.1);

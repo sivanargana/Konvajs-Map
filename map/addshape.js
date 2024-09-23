@@ -15,6 +15,7 @@ const AddShape = (shape, layer) => {
                 strokeWidth: 4,
                 draggable: true,
                 strokeScaleEnabled: false,
+                customData:{status:"sold"}
             });
 
             layer.add(rect)
