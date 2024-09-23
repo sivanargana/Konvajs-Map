@@ -8,6 +8,11 @@ import Export from './export';
 let namectrl = document.querySelector('[data-control="name"]');
 let upload = document.querySelector('[data-type="upload"]');
 let uploaded = "";
+
+let selectedObj;
+
+
+
 let stage = new Konva.Stage({
   container: 'canvas',
 });
@@ -32,8 +37,8 @@ upload.addEventListener("change", (e) => {
         layer.batchDraw()
       });
       Resizing(stage)
-      Panning(stage, layer)
-      Zooming(stage, layer);
+      // Panning(stage, layer)
+      // Zooming(stage, layer);
       // This is your Base64 encoded file
     };
     reader.onerror = function (error) {
@@ -47,20 +52,37 @@ document.querySelectorAll('[data-shape]').forEach(item => {
   item.addEventListener("click", (e) => {
     AddShape(e.target.dataset.shape, layer);
     const lastChild = stage.children[0].children[stage.children[0].children.length - 1];
-
     stage.getLayers()[0].add(new Konva.Transformer({
       nodes: [lastChild],
       padding: 5,
       ignoreStroke: true
     }));
- 
-
- 
-
-    
     layer.draw();
+
+    stage.children.forEach((layer)=>{
+      layer.children.forEach((object)=>{
+
+ 
+        if(object.nodeType == "Group"){
+
+          object.on("click",(e)=>{
+
+            selectedObj = e.currentTarget;
+            
+
+            console.log(e.currentTarget)
+
+          })
+
+        }
+    
+ 
+      })
+    })
   })
 })
+
+
 document.querySelector('[data-type="save"]').addEventListener("click", (e) => {
   if (namectrl.value !== "" && uploaded !== "") {
     let obj = { name: namectrl.value, image: uploaded, json: stage.toJSON() }
@@ -78,13 +100,5 @@ document.querySelector('[data-type="save"]').addEventListener("click", (e) => {
   } else {
     alert("name & image required!")
   }
-  // stage.getChildren().forEach(function (layer) {
-  //   layer.getChildren().forEach(function (node) {
-  //     if(node instanceof Konva.Rect || node instanceof Konva.Circle){
-  //       node.setAttrs({draggable:false})
-  //       console.log(node);
-  //     }
-  //   });
-  // });
-  // localStorage.setItem("canvas",JSON.stringify(stage.toJSON()))
+ 
 })

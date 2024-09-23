@@ -1,17 +1,8 @@
 import * as Konva from 'konva';
 import '../style.scss';
-
- 
 const params = new URLSearchParams(new URL(window.location.href).search);
-
- 
-
-
 fetch(`http://localhost:3000/map?id=${params.get("id")}`, { method: "GET" }).then((res) => res.json()).then((res) => {
-
- 
-let json = JSON.parse(res.json);
- 
+  let json = JSON.parse(res.json);
   json.children.forEach(layer => {
     let shapes = layer.children.filter(item => item = item.className !== "Transformer");
     layer.children = shapes;
@@ -22,24 +13,23 @@ let json = JSON.parse(res.json);
       if (shape.className == "Circle") {
         shape.attrs.draggable = false;
       }
-      if (shape.className == "Image") {
-        let img = new Image();
-        img.scaleX = 1;
-        img.scaleY = 1;
-        img.src = res.image;
-        shape.attrs.image = img;
-      }
+   
     });
   });
   let stage = Konva.Node.create(json, 'canvas');
   let background = stage.findOne("#background");
-  // stage.getContainer().style.border = "1px solid blue";
-  // stage.getContainer().style.aspectRatio = background.getImage().width / background.getImage().height;
-  // console.dir(stage.getContainer().getBoundingClientRect().width)
-  // console.log( stage.getContainer())
-  // stage.setWidth(background.getImage().width)
-  // stage.setHeight(background.getImage().height)
-  // stage.setScale({x:0.4,y:0.4})
-  // stage.setWidth(stage.getContainer().getBoundingClientRect().width)
-  // stage.setHeight(stage.getContainer().getBoundingClientRect().height)
+  let img = new Image();
+  img.src = res.image;
+  background.attrs.image = img;
+  let nodes = stage.children[0].children.filter((item) => item.className !== "Image");
+  nodes.forEach((item) => {
+    item.on("mouseenter", (e) => {
+      e.target.setAttrs({ fill: "blue" });
+      console.log(e.target.attrs.customData)
+    })
+    item.on("mouseleave", (e) => {
+      e.target.setAttrs({ fill: "green" })
+    })
+  })
+ 
 })

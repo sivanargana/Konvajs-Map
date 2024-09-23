@@ -1,8 +1,5 @@
-
 let container = document.querySelector(".interface-body");
 const Resizing = (stage) => {
-
-    
     let stageResize = () => {
         stage.setWidth(container.getBoundingClientRect().width),
         stage.setHeight(container.getBoundingClientRect().height);
@@ -12,5 +9,4 @@ const Resizing = (stage) => {
         stageResize()
     }
 }
-
 export default Resizing;
